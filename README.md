@@ -61,7 +61,7 @@ This repository contains an R-based project that explores and models global soci
 
 1. **Clone or Download** the repository:
    ```bash
-   git clone https://github.com/YourUsername/Global-Development-Project.git
+   git clone https://github.com/YourUsername/global-development.git
 
 ## Installation and Usage
 
@@ -133,7 +133,7 @@ Contributions are welcome. To propose changes:
 3. Make and commit edits
 4. Submit a Pull Request describing modifications
 
-For questions, open an Issue or email `YourEmail@example.com`.
+For questions, open an Issue or email `ilyas.ibrahimm@hotmail.com`.
 
 ---
 
