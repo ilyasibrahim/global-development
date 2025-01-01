@@ -25,21 +25,17 @@ This repository contains an R-based project that explores and models global soci
 ## Files and Structure
 
 - **R Scripts and Code Files**  
-  - `01_data_loading.R` (example)  
+  - `global-development.R`  
     *Loads the dataset and defines thematic indicators.*
-  - `02_data_cleaning.R`  
     *Handles missing data, imputation strategies (median, KNN, MICE), normalization, etc.*
-  - `03_exploratory_analysis.R`  
     *Contains EDA scripts (boxplots, correlation heatmaps, distributions).*
-  - `04_feature_engineering.R`  
     *Builds interaction terms, polynomial features, aggregated indices.*
-  - `05_modeling.R`  
     *Performs logistic/linear regressions, random forests, and clustering (k-means).*
-  - (Additional scripts for specialized plots, final results, or utility functions.)
 
 - **R Markdown / Markdown Files**  
-  - `project_analysis.Rmd`  
+  - `global-development.Rmd`  
     *Combines code chunks and explanatory narrative into a single report.*
+    * Available upon request from the author.*
 
 - **Data**  
   - `country_data.csv` 
