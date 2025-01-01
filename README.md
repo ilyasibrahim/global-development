@@ -139,7 +139,7 @@ For questions, open an Issue or email `ilyas.ibrahimm@hotmail.com`.
 
 ## License
 
-See the [LICENSE](LICENSE) file for details.
+See the [LICENSE](https://github.com/ilyasibrahim/global-development/blob/main/LICENSE.txt) file for details.
 
 ---
 
