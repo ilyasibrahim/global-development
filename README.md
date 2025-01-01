@@ -25,46 +25,46 @@ This repository contains an R-based project that explores and models global soci
 ## Files and Structure
 
 - **R Scripts and Code Files**  
-  - **`01_project_setup.R`**  
+  - `01_project_setup.R` 
     *Installs and loads all required packages.*  
     *Ensures that any missing packages are installed automatically.*
 
-  - **`02_helper_functions.R`**  
+  - `02_helper_functions.R` 
     *Houses utility functions (e.g., data loading, transformations, map preparation).*
 
-  - **`03_data_collection_initial_review.R`**  
+  - `03_data_collection_initial_review.R`
     *Loads the dataset (`country_data.csv`),*  
     *Defines thematic indicators and checks missing data,*  
     *Generates basic summaries and outlier boxplots.*
 
-  - **`04_data_cleaning_imputation.R`**  
+  - `04_data_cleaning_imputation.R`  
     *Performs data cleaning steps (e.g., removing certain rows),*  
     *Handles missing data imputation (median, KNN, MICE).*
 
-  - **`05_data_normalization.R`**  
+  - `05_data_normalization.R`  
     *Applies log+z, min-max, or standard z-score transformations as appropriate.*
 
-  - **`06_exploratory_data_analysis.R`**  
+  - `06_exploratory_data_analysis.R`  
     *Creates correlation matrices, histograms, scatter plots,*  
     *Geo-plots (mapping fertility, education, infant mortality, etc.).*
 
-  - **`07_feature_engineering.R`**  
+  - `07_feature_engineering.R`  
     *Creates interaction terms, polynomial features, dummy variables,*  
     *Aggregated indexes (trade_index, human_capital_index, etc.).*
 
-  - **`08_machine_learning_economic.R`**  
+  - `08_machine_learning_economic.R`  
     *Covers economic-focused models (GDP growth prediction, trade balance, development tiers, downturn classification).*
 
-  - **`09_machine_learning_population.R`**  
+  - `09_machine_learning_population.R`  
     *Focuses on population dynamics (fertility, population growth, stability, migration).*
 
-  - **`10_machine_learning_education.R`**  
+  - `10_machine_learning_education.R`  
     *Models for education and employment (predicting human capital index, employment distributions, resilience).*
 
-  - **`11_machine_learning_health_safety.R`**  
+  - `11_machine_learning_health_safety.R` 
     *Life expectancy, infant mortality, health status classification, and crisis prediction.*
 
-  - **`12_machine_learning_environment_tourism.R`**  
+  - `12_machine_learning_environment_tourism.R` 
     *Environmental and tourism indicators (CO2 emissions, sustainability classification, tourism drivers).*
 
 - **R Markdown / Markdown Files**  
