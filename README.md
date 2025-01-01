@@ -96,7 +96,8 @@ This repository contains an R-based project that explores and models global soci
 
 ## Installation and Usage
 
-2. **Open the Project** in RStudio (or your preferred R environment).
+2. **Open the Project** in RStudio (or your preferred R environment), open the .Rproj file,
+or set your working directory to the project folder.
 
 3. **Install Necessary Packages**  
 
@@ -109,11 +110,13 @@ required_packages <- c(
 )
 install.packages(required_packages)
 ```
-4. **Load the Project**  
-Open the `.Rproj` file if present, or run scripts in sequential order (e.g., `01_data_loading.R`, `02_data_cleaning.R`, etc.).
+4. **Load the Scripts in Order**  
+  - Run `01_project_setup.R` to install/load libraries.
+  - Then run each script sequentially (`02_helper_functions.R`, `03_data_collection_initial_review.R`, etc.) so that all required objects exist in your environment.
 
 5. **Run the Analysis**  
-Execute the `.Rmd` file (for example, `project_analysis.Rmd`) to reproduce the entire workflow, generating plots, model outputs, etc.
+  - Execute the R scripts step-by-step, **OR**
+  - Knit the .Rmd file (e.g., global-development.Rmd) to reproduce the entire workflow, generating plots, model outputs, etc.
 
 ---
 
@@ -178,7 +181,7 @@ See the [LICENSE](https://github.com/ilyasibrahim/global-development/blob/main/L
 
 - **Data Source**: Kaggle or other open-data platforms.  
 - **Packages**: CRAN or GitHub repositories used.  
-- **Academic Theories**: For example, mention the Environmental Kuznets Curve if relevant.
+- **Academic Theories**: Demographic Transition, Environmental Kuznets Curve, Human Capability, etc.
 
 ---
 
