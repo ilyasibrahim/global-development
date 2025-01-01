@@ -42,7 +42,7 @@ This repository contains an R-based project that explores and models global soci
     *Combines code chunks and explanatory narrative into a single report.*
 
 - **Data**  
-  - `country_data.csv` (or equivalent)  
+  - `country_data.csv` 
     *Referenced by code scripts for the main analysis.*
 
 - **README.md**  
@@ -61,7 +61,7 @@ This repository contains an R-based project that explores and models global soci
 
 1. **Clone or Download** the repository:
    ```bash
-   git clone https://github.com/YourUsername/global-development.git
+   git clone https://github.com/ilyasibrahim/global-development.git
 
 ## Installation and Usage
 
@@ -139,7 +139,7 @@ For questions, open an Issue or email `ilyas.ibrahimm@hotmail.com`.
 
 ## License
 
-See the `LICENSE` file for details.
+See the [LICENSE](LICENSE) file for details.
 
 ---
 
