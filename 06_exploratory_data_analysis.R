@@ -240,7 +240,177 @@ combined_edu_fer_disparity <- (education_map | fertility_map) / disparity_edu_fe
   plot_layout(heights = c(1, 1.5))
 print(combined_edu_fer_disparity)
 
-# 6.5 SIMILAR PLOTS FOR INFANT MORTALITY & EDUCATION, CO2 & Forest, etc.
-# (Code is in the original script, omitted here for brevity or reuse as needed.)
+# 6.5 INFANT MORTALITY & EDUCATION
+#    Extends the geospatial approach to compare infant mortality with education.
+
+infant_mortality_thresholds <- quantile(world_merged$infant_mortality, probs = c(0.33, 0.66), na.rm = TRUE)
+education_thresholds <- quantile(world_merged$education_attainment, probs = c(0.33, 0.66), na.rm = TRUE)
+
+world_merged <- world_merged %>%
+  mutate(
+    infant_mortality_category = case_when(
+      infant_mortality <= infant_mortality_thresholds[1] ~ "Low",
+      infant_mortality <= infant_mortality_thresholds[2] ~ "Moderate",
+      TRUE ~ "High"
+    ),
+    education_category = case_when(
+      education_attainment <= education_thresholds[1] ~ "Low",
+      education_attainment <= education_thresholds[2] ~ "Moderate",
+      TRUE ~ "High"
+    )
+  )
+
+infant_mortality_map <- ggplot(world_merged) +
+  geom_sf(aes(fill = infant_mortality_category), color = "white") +
+  scale_fill_manual(
+    values = c("Low" = "#1B9E77",
+               "Moderate" = "#7570B3",
+               "High" = "#D73027"),
+    na.value = "grey90"
+  ) +
+  labs(title = "Infant Mortality Rates") +
+  custom_map_theme
+
+education_map <- ggplot(world_merged) +
+  geom_sf(aes(fill = education_category), color = "white") +
+  scale_fill_manual(
+    values = c("Low" = "#D73027",
+               "Moderate" = "#FC8D59",
+               "High" = "#91BFDB"),
+    na.value = "grey90"
+  ) +
+  labs(title = "Educational Attainment") +
+  custom_map_theme
+
+edu_mor_maps <- cowplot::plot_grid(
+  education_map,
+  infant_mortality_map,
+  nrow = 2,
+  align = "h"
+)
+print(edu_mor_maps)
+
+# Disparity map: High Mortality + Low Education vs. Low Mortality + High Education
+world_merged <- world_merged %>%
+  mutate(
+    combined_category = case_when(
+      infant_mortality_category == "High" & education_category == "Low" ~ "High Mortality, Low Education",
+      infant_mortality_category == "Low" & education_category == "High" ~ "Low Mortality, High Education",
+      TRUE ~ "Others"
+    )
+  )
+
+disparity_edu_mor_map <- ggplot(world_merged) +
+  geom_sf(aes(fill = combined_category), color = "white") +
+  scale_fill_manual(
+    values = c(
+      "High Mortality, Low Education" = "#d7301f",
+      "Low Mortality, High Education" = "#1a9850",
+      "Others" = "#bababa"
+    ),
+    na.value = "grey90"
+  ) +
+  labs(
+    title = "Geographic Disparities in Infant Mortality and Education",
+    subtitle = "High Mortality & Low Education vs. Low Mortality & High Education",
+    caption = "Data Source: Kaggle"
+  ) +
+  custom_map_theme
+
+top_row <- plot_grid(
+  education_map,
+  infant_mortality_map,
+  ncol = 2,
+  align = "hv"
+)
+combined_edu_mor_disparity <- plot_grid(
+  top_row,
+  disparity_edu_mor_map,
+  ncol = 1,
+  rel_heights = c(1, 1.4)
+)
+
+print(combined_edu_mor_disparity)
+
+# 6.6 CO2 EMISSIONS & FOREST COVER
+#     Creates categories for co2_emissions and forested_area, similar to above.
+
+co2_thresholds <- quantile(world_merged$co2_emissions, probs = c(0.33, 0.66), na.rm = TRUE)
+forest_thresholds <- quantile(world_merged$forested_area, probs = c(0.33, 0.66), na.rm = TRUE)
+
+world_merged <- world_merged %>%
+  mutate(
+    co2_category = case_when(
+      co2_emissions <= co2_thresholds[1] ~ "Low",
+      co2_emissions <= co2_thresholds[2] ~ "Moderate",
+      TRUE ~ "High"
+    ),
+    forest_category = case_when(
+      forested_area <= forest_thresholds[1] ~ "Low",
+      forested_area <= forest_thresholds[2] ~ "Moderate",
+      TRUE ~ "High"
+    )
+  )
+
+co2_map <- ggplot(world_merged) +
+  geom_sf(aes(fill = co2_category), color = "white") +
+  scale_fill_manual(
+    values = c("Low" = "#1B9E77",
+               "Moderate" = "#7570B3",
+               "High" = "#D73027"),
+    na.value = "grey90"
+  ) +
+  labs(title = "CO2 Emissions Levels") +
+  custom_map_theme
+
+forest_map <- ggplot(world_merged) +
+  geom_sf(aes(fill = forest_category), color = "white") +
+  scale_fill_manual(
+    values = c("Low" = "#D73027",
+               "Moderate" = "#FC8D59",
+               "High" = "#91BFDB"),
+    na.value = "grey90"
+  ) +
+  labs(title = "Forest Coverage") +
+  custom_map_theme
+
+co2_forest_maps <- plot_grid(
+  co2_map,
+  forest_map,
+  nrow = 2,
+  align = "h"
+)
+print(co2_forest_maps)
+
+# Disparity map: High CO2 & Low Forest vs. Low CO2 & High Forest
+world_merged <- world_merged %>%
+  mutate(
+    combined_co2_forest = case_when(
+      co2_category == "High" & forest_category == "Low" ~ "High CO2, Low Forest",
+      co2_category == "Low" & forest_category == "High" ~ "Low CO2, High Forest",
+      TRUE ~ "Others"
+    )
+  )
+
+disparity_co2_forest_map <- ggplot(world_merged) +
+  geom_sf(aes(fill = combined_co2_forest), color = "white") +
+  scale_fill_manual(
+    values = c(
+      "High CO2, Low Forest" = "#d7301f",
+      "Low CO2, High Forest" = "#1a9850",
+      "Others" = "#bababa"
+    ),
+    na.value = "grey90"
+  ) +
+  labs(
+    title = "Geographic Disparities in CO2 Emissions and Forest Coverage",
+    subtitle = "High CO2 & Low Forest vs. Low CO2 & High Forest",
+    caption = "Data Source: Kaggle"
+  ) +
+  custom_map_theme
+
+combined_co2_forest_disparity <- (co2_map | forest_map) / disparity_co2_forest_map +
+  plot_layout(heights = c(1, 1.5))
+print(combined_co2_forest_disparity)
 
 message("Exploratory data analysis complete.")
