@@ -55,16 +55,21 @@ safe_log_z_transform <- function(x) {
 }
 
 # Prepare world map for plotting in ggplot
-prepare_world_map_data <- function(df, iso_col = "iso2") {
-  world_map_sp <- rworldmap::getMap(resolution = "high")
-  world_map <- sf::st_as_sf(world_map_sp)
+# Copy paste all the files in the WB_countries_Admin0_10m folder into your project directory
+prepare_world_map_data <- function(df, iso_col = "iso2", shapefile = "WB_countries_Admin0_10m.shp") {
+  # 1) Read the shapefile
+  world_map <- st_read(shapefile)
   
+  # 2) Rename the ISO column if needed (assumes 'ISO_A2' exists in shapefile)
+  #    Then convert to uppercase for consistent merging with your data.
   world_map <- world_map %>%
     rename(iso_a2 = ISO_A2) %>%
     mutate(iso_a2 = toupper(iso_a2))
   
+  # 3) Convert the user data’s ISO column to uppercase as well
   df[[iso_col]] <- toupper(df[[iso_col]])
   
+  # 4) Merge your data onto the shapefile by matching iso_a2 -> iso2
   world_merged <- world_map %>%
     left_join(df, by = c("iso_a2" = iso_col))
   
