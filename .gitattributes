@@ -1,5 +1,6 @@
-# Force GitHub to treat all *.R files as R
-*.R linguist-language=R
-
-# Force to classify Rmd files as R too
+# Treat all R and R Markdown files as R
+*.R   linguist-language=R
 *.Rmd linguist-language=R
+
+# Exclude HTML files in /docs from language stats
+docs/*.html linguist-generated
