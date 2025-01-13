@@ -1,0 +1,5 @@
+# Force GitHub to treat all *.R files as R
+*.R linguist-language=R
+
+# Force to classify Rmd files as R too
+*.Rmd linguist-language=R
