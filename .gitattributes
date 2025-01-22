@@ -3,4 +3,4 @@
 *.Rmd linguist-language=R
 
 # Exclude HTML files in /docs from language stats
-docs/*.html linguist-generated
+*.html linguist-detectable=false
